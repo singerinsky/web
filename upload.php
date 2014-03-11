@@ -54,7 +54,30 @@ else if($file_type == "in_build_stand")
     
 }
 else if($file_type == "input_file"){
+    $is_exist = check_file_exist($_FILES['file']['name']);
+    if($is_exist){
+        print "file already store";
+        return;
+    }else{
+        print "no file exits";    
+    }
     
+    $file_name = upload_file();
+    if($file_name == -1)
+    {
+        print "error of upload file";
+    }
+    else
+    {
+        print $file_name;
+    }
+    
+    //$file_type = $_GET["file_type"];
+    
+    $stand_array = load_process_file($file_name,8);
+        //clear system
+    //build new stand
+    add_actinfo_into_db($stand_array,$file_name);
     
 }
 

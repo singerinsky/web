@@ -119,7 +119,6 @@ function build_stand($act_all,$file_name)
     $file_name = $file_name_array[1];
     $str = "INSERT INTO yima.s_stand (act_id,trade_type, business_type, business_info,add_time) VALUES ";
 
-
     $tmp_str = "";
     $i = 0;
     foreach($act_all as $act_info)
@@ -164,8 +163,8 @@ function add_actinfo_into_db($act_all,$file_name)
     $file_name_array = split("/",$file_name);
     $file_name = $file_name_array[1];
     $str = "INSERT INTO yima.act_info (act_id, act_detail_name, act_name, company_id, 
-        company_name, province, trade_type, business_type, business_info, entrust_count,
-        verify_count, table_name,add_time) VALUES ";
+        company_name, province, entrust_count,
+        verify_count, table_name,add_time, trade_type, business_type, business_info) VALUES ";
 
 
     $tmp_str = "";
@@ -173,10 +172,20 @@ function add_actinfo_into_db($act_all,$file_name)
     foreach($act_all as $act_info)
     {
         $tmp_str .= "(";
-        for($j=0;$j<11;$j++)
+        for($j=0;$j < 8;$j++)
         {
             $tmp_str .= "'$act_info[$j]',"; 
         }
+        //判断是否存在标准
+        if(isset($global_stand[$act_info[0]]))
+        {
+            $tmp_str .="'".$global_stand[$act_info[0]]['']."','".$global_stand[$act_info[0]]['']."','".$global_stand[$act_info[0]]['']."',"; 
+        }
+        else
+        {
+            $tmp_str .="'未知','未知','未知',";    
+        }
+        
         $tmp_str .= "'".$file_name."','".$time."'),";
         
         if(($i%1000 == 0 )&&($i/1000 >= 1) || ($i + 1 == count($act_all)))
