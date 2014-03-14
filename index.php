@@ -121,10 +121,14 @@ table.tab_css_3 tr.tr_css{
     }
     );
  }
+ document.body.style.backgroundImage="url(back.jpg)";
 </script>
 </head>
 
-<body>
+<body background="back.jpg">
+    <div align="center">
+        <font size="8">张瑜兰专用表格处理程序</font>
+    </div>
 
 <table id="mytab"  border="2" class="tab_css_1">
     <tr class="tr_css">
@@ -163,5 +167,8 @@ while($row = mysql_fetch_array($global_file_info))
 
 </tr>
 </table>
+<div align="center">
+    <a href="add_info.php">加入新的数据</a>
+</div>
 </body>
 </html>
