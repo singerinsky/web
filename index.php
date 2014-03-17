@@ -125,6 +125,10 @@ table.tab_css_3 tr.tr_css{
 </head>
 
 <body>
+ <div>
+  <a href="add_info.php">添加数据操作</a>
+  
+ </div>
 
 <table id="mytab"  border="2" class="tab_css_1">
     <tr class="tr_css">
